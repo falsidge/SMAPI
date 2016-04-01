@@ -73,17 +73,19 @@
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'Debug|x86'">
     <PlatformTarget>x86</PlatformTarget>
-    <OutputPath>bin\x86\Debug\</OutputPath>
+    <OutputPath>bin\Debug\</OutputPath>
     <Prefer32Bit>false</Prefer32Bit>
     <DefineConstants>
     </DefineConstants>
     <UseVSHostingProcess>true</UseVSHostingProcess>
     <Optimize>true</Optimize>
+    <DocumentationFile>bin\Debug\StardewModdingAPI.XML</DocumentationFile>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'Release|x86'">
     <PlatformTarget>x86</PlatformTarget>
-    <OutputPath>bin\x86\Release\</OutputPath>
+    <OutputPath>bin\Release\</OutputPath>
     <Prefer32Bit>false</Prefer32Bit>
+    <DocumentationFile>bin\Release\StardewModdingAPI.XML</DocumentationFile>
   </PropertyGroup>
   <PropertyGroup>
     <ApplicationIcon>icon.ico</ApplicationIcon>
@@ -149,8 +151,10 @@
     <Compile Include="Inheritance\Menus\SGameMenu.cs" />
     <Compile Include="Inheritance\Menus\SInventoryPage.cs" />
     <Compile Include="Inheritance\Minigames\SMinigameBase.cs" />
+    <Compile Include="Inheritance\SBareObject.cs" />
     <Compile Include="Inheritance\SObject.cs" />
-    <Compile Include="Log.cs" />
+    <Compile Include="JsonResolver.cs" />
+    <Compile Include="Logger.cs" />
     <Compile Include="Manifest.cs" />
     <Compile Include="Mod.cs" />
     <Compile Include="ModItem.cs" />

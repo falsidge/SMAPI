@@ -8,41 +8,48 @@ namespace StardewModdingAPI.Events
         public static event EventHandler Initialize = delegate { };
         public static event EventHandler LoadContent = delegate { };
         public static event EventHandler FirstUpdateTick = delegate { };
+
         /// <summary>
-        /// Fires every update (1/60 of a second)
+        ///     Fires every update (1/60 of a second)
         /// </summary>
         public static event EventHandler UpdateTick = delegate { };
+
         /// <summary>
-        /// Fires every other update (1/30 of a second)
+        ///     Fires every other update (1/30 of a second)
         /// </summary>
         public static event EventHandler SecondUpdateTick = delegate { };
+
         /// <summary>
-        /// Fires every fourth update (1/15 of a second)
+        ///     Fires every fourth update (1/15 of a second)
         /// </summary>
         public static event EventHandler FourthUpdateTick = delegate { };
+
         /// <summary>
-        /// Fires every eighth update (roughly 1/8 of a second)
+        ///     Fires every eighth update (roughly 1/8 of a second)
         /// </summary>
         public static event EventHandler EighthUpdateTick = delegate { };
+
         /// <summary>
-        /// Fires every fifthteenth update (1/4 of a second)
+        ///     Fires every fifthteenth update (1/4 of a second)
         /// </summary>
         public static event EventHandler QuarterSecondTick = delegate { };
+
         /// <summary>
-        /// Fires every thirtieth update (1/2 of a second)
+        ///     Fires every thirtieth update (1/2 of a second)
         /// </summary>
         public static event EventHandler HalfSecondTick = delegate { };
+
         /// <summary>
-        /// Fires every sixtieth update (a second)
+        ///     Fires every sixtieth update (a second)
         /// </summary>
         public static event EventHandler OneSecondTick = delegate { };
 
-        public static void InvokeGameLoaded()
+        internal static void InvokeGameLoaded()
         {
             GameLoaded.Invoke(null, EventArgs.Empty);
         }
 
-        public static void InvokeInitialize()
+        internal static void InvokeInitialize()
         {
             try
             {
@@ -50,11 +57,11 @@ namespace StardewModdingAPI.Events
             }
             catch (Exception ex)
             {
-                Log.Error("An exception occured in XNA Initialize: " + ex);
+                Log.AsyncR("An exception occured in XNA Initialize: " + ex);
             }
         }
 
-        public static void InvokeLoadContent()
+        internal static void InvokeLoadContent()
         {
             try
             {
@@ -62,11 +69,11 @@ namespace StardewModdingAPI.Events
             }
             catch (Exception ex)
             {
-                Log.Error("An exception occured in XNA LoadContent: " + ex);
+                Log.AsyncR("An exception occured in XNA LoadContent: " + ex);
             }
         }
 
-        public static void InvokeUpdateTick()
+        internal static void InvokeUpdateTick()
         {
             try
             {
@@ -74,41 +81,41 @@ namespace StardewModdingAPI.Events
             }
             catch (Exception ex)
             {
-                Log.Error("An exception occured in XNA UpdateTick: " + ex);
+                Log.AsyncR("An exception occured in XNA UpdateTick: " + ex);
             }
         }
 
-        public static void InvokeSecondUpdateTick()
+        internal static void InvokeSecondUpdateTick()
         {
             SecondUpdateTick.Invoke(null, EventArgs.Empty);
         }
 
-        public static void InvokeFourthUpdateTick()
+        internal static void InvokeFourthUpdateTick()
         {
             FourthUpdateTick.Invoke(null, EventArgs.Empty);
         }
 
-        public static void InvokeEighthUpdateTick()
+        internal static void InvokeEighthUpdateTick()
         {
             EighthUpdateTick.Invoke(null, EventArgs.Empty);
         }
 
-        public static void InvokeQuarterSecondTick()
+        internal static void InvokeQuarterSecondTick()
         {
             QuarterSecondTick.Invoke(null, EventArgs.Empty);
         }
 
-        public static void InvokeHalfSecondTick()
+        internal static void InvokeHalfSecondTick()
         {
             HalfSecondTick.Invoke(null, EventArgs.Empty);
         }
 
-        public static void InvokeOneSecondTick()
+        internal static void InvokeOneSecondTick()
         {
             OneSecondTick.Invoke(null, EventArgs.Empty);
         }
 
-        public static void InvokeFirstUpdateTick()
+        internal static void InvokeFirstUpdateTick()
         {
             FirstUpdateTick.Invoke(null, EventArgs.Empty);
         }
