@@ -3,12 +3,15 @@ using System.Collections.Generic;
 using System.Linq;
 using Microsoft.Xna.Framework;
 using StardewModdingAPI;
+using StardewModdingAPI.Inheritance;
 using StardewModdingAPI.Events;
 using StardewValley;
 using StardewValley.Menus;
 using StardewValley.Objects;
 using StardewValley.Tools;
+using Microsoft.Xna.Framework.Graphics;
 using Object = StardewValley.Object;
+
 
 namespace TrainerMod
 {
@@ -41,10 +44,23 @@ namespace TrainerMod
 
         public override void Entry(params object[] objects)
         {
+
+            // dfd.Texture = Game1.content.Load<Texture2D>("TileSheets\\Craftables");
+
             RegisterCommands();
+           
             GameEvents.UpdateTick += Events_UpdateTick;
+            GameEvents.GameLoaded += items_add;
         }
 
+        private static void items_add(object sender, EventArgs e)
+        {
+            SObject dfd = new SObject();
+           
+       //     Game1.saveOnNewDay = false;
+            Log.Verbose(dfd.Name);
+            SGame.RegisterModItem(dfd);
+        }
         private static void Events_UpdateTick(object sender, EventArgs e)
         {
             if (Game1.player == null)
@@ -101,6 +117,8 @@ namespace TrainerMod
             Command.RegisterCommand("out_items", "Outputs a list of items | out_items", new[] {""}).CommandFired += out_items;
             Command.RegisterCommand("out_melee", "Outputs a list of melee weapons | out_melee", new[] {""}).CommandFired += out_melee;
             Command.RegisterCommand("out_rings", "Outputs a list of rings | out_rings", new[] {""}).CommandFired += out_rings;
+            //Command.RegisterCommand("out_objects", "Outputs a list of objects in game | out_objects", new[] { "" }).CommandFired += listobjects;
+            Command.RegisterCommand("out_luck", "Outputs a list of objects in game | out_objects", new[] { "" }).CommandFired += luckl;
             Command.RegisterCommand("newitem", "not to be used | newitem", new[] {""}).CommandFired += RegisterNewItem;
 
             Command.RegisterCommand("world_settime", "Sets the time to the specified value | world_settime <value>", new[] {"(Int32)<value> The target time [06:00 AM is 600]"}).CommandFired += world_setTime;
@@ -109,6 +127,7 @@ namespace TrainerMod
             Command.RegisterCommand("world_setseason", "Sets the season to the specified value | world_setseason <value>", new[] {"(winter, spring, summer, fall)<value> The target season"}).CommandFired += world_setSeason;
             Command.RegisterCommand("world_downminelevel", "Goes down one mine level? | world_downminelevel", new[] {""}).CommandFired += world_downMineLevel;
             Command.RegisterCommand("world_setminelevel", "Sets mine level? | world_setminelevel", new[] {"(Int32)<value> The target level"}).CommandFired += world_setMineLevel;
+
         }
 
         private static void types_CommandFired(object sender, EventArgsCommand e)
@@ -120,7 +139,28 @@ namespace TrainerMod
         {
             Program.StardewInvoke(() => { Program.StardewForm.Hide(); });
         }
+        private static void luckl(object sender, EventArgsCommand e)
+        {
 
+            Log.Verbose("Farming base : " + Game1.player.farmingLevel +" added : " + Game1.player.addedFarmingLevel);
+            Log.Verbose("Fishing base : " + Game1.player.FishingLevel + " added : " + Game1.player.addedFishingLevel);
+            Log.Verbose("Mining base : " + Game1.player.MiningLevel + " added : " + Game1.player.addedMiningLevel);
+            Log.Verbose("Luck base : " + Game1.player.luckLevel + " added : " + Game1.player.addedLuckLevel);
+
+            Log.Verbose("Foraging base : " + Game1.player.foragingLevel + " added : " + Game1.player.addedForagingLevel);
+            Log.Verbose("Crafting time name of base : " +String.Join(" ", Game1.player.buffs) + " added : " + Game1.player.CraftingTime);
+            Log.Verbose("Max stamina : " + Game1.player.MaxStamina);
+            Log.Verbose("Magnetic radius : " + Game1.player.MagneticRadius);
+
+            Log.Verbose("Resilience : " + Game1.player.resilience);
+            Log.Verbose("Attack base : " + Game1.player.attack);
+            Log.Verbose("Speed base : "+Game1.player.speed+" added : " + Game1.player.addedSpeed);
+        }
+
+        private static void add_buff(object sender, EventArgsCommand e)
+        {
+
+        }
         private static void show_CommandFired(object sender, EventArgsCommand e)
         {
             Program.StardewInvoke(() => { Program.StardewForm.Show(); });
@@ -755,14 +795,26 @@ namespace TrainerMod
         private static void blank_command(object sender, EventArgsCommand e)
         {
         }
-
+        private static void listobjects(object sender, EventArgsCommand e)
+        {
+            foreach (GameLocation gameLocation in Game1.locations)
+            {
+                Dictionary < Vector2, Object >.ValueCollection valueColl =
+       gameLocation.Objects.Values;
+                foreach (Object s in valueColl)
+                {
+                    if (e.Command.CalledArgs.Length == 0 || s.Name == e.Command.CalledArgs[0])
+                    Log.Verbose(s.Name + " : " + gameLocation.Name);
+                }
+            }
+        }
         private static void RegisterNewItem(object sender, EventArgsCommand e)
         {
-#if DEBUG
+
             SObject s = SGame.PullModItemFromDict(0, true);
             s.Stack = 999;
             Game1.player.addItemToInventory(s);
-#endif
+
         }
     }
 }

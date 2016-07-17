@@ -430,7 +430,7 @@ namespace StardewModdingAPI.Inheritance
         protected override void Initialize()
         {
             Log.AsyncY("XNA Initialize");
-            //ModItems = new Dictionary<int, SObject>();
+            ModItems = new Dictionary<int, SObject>();
             DebugMessageQueue = new Queue<string>();
             PreviouslyPressedButtons = new Buttons[4][];
             for (var i = 0; i < 4; ++i) PreviouslyPressedButtons[i] = new Buttons[0];
@@ -1417,7 +1417,7 @@ namespace StardewModdingAPI.Inheritance
 
         [Obsolete("Do not use at this time.")]
         // ReSharper disable once UnusedMember.Local
-        private static int RegisterModItem(SObject modItem)
+        public static int RegisterModItem(SObject modItem)
         {
             if (modItem.HasBeenRegistered)
             {
@@ -1435,7 +1435,7 @@ namespace StardewModdingAPI.Inheritance
 
         [Obsolete("Do not use at this time.")]
         // ReSharper disable once UnusedMember.Local
-        private static SObject PullModItemFromDict(int id, bool isIndex)
+        public static SObject PullModItemFromDict(int id, bool isIndex)
         {
             if (isIndex)
             {

@@ -75,7 +75,7 @@
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'Debug|x86'">
     <PlatformTarget>x86</PlatformTarget>
-    <OutputPath>bin\Debug\</OutputPath>
+    <OutputPath>..\..\..\..\..\..\..\Program Files %28x86%29\Steam\steamapps\common\Stardew Valley\</OutputPath>
     <Prefer32Bit>false</Prefer32Bit>
     <DefineConstants>TRACE</DefineConstants>
     <UseVSHostingProcess>true</UseVSHostingProcess>
@@ -119,7 +119,7 @@
     </Reference>
     <Reference Include="Stardew Valley, Version=1.0.5905.5747, Culture=neutral, processorArchitecture=x86">
       <SpecificVersion>False</SpecificVersion>
-      <HintPath>$(SteamPath)\steamapps\common\Stardew Valley\Stardew Valley.exe</HintPath>
+      <HintPath>..\..\..\..\..\..\..\Program Files (x86)\Steam\steamapps\common\Stardew Valley\Stardew Valley.exe</HintPath>
       <Private>False</Private>
     </Reference>
     <Reference Include="System" />
@@ -133,7 +133,7 @@
     <Reference Include="System.Xml" />
     <Reference Include="xTile, Version=2.0.4.0, Culture=neutral, processorArchitecture=x86">
       <SpecificVersion>False</SpecificVersion>
-      <HintPath>$(SteamPath)\steamapps\common\Stardew Valley\xTile.dll</HintPath>
+      <HintPath>..\..\..\..\..\..\..\Program Files (x86)\Steam\steamapps\common\Stardew Valley\xTile.dll</HintPath>
       <Private>False</Private>
     </Reference>
   </ItemGroup>
@@ -156,6 +156,7 @@
     <Compile Include="Events\Player.cs" />
     <Compile Include="Events\Time.cs" />
     <Compile Include="Extensions.cs" />
+    <Compile Include="Inheritance\InvisibleTile.cs" />
     <Compile Include="Inheritance\ItemStackChange.cs" />
     <Compile Include="Inheritance\Menus\SBobberBar.cs" />
     <Compile Include="Inheritance\Menus\SGameMenu.cs" />
